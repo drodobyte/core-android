@@ -2,10 +2,11 @@ package com.drodobyte.coreandroid.x
 
 import android.view.View
 import android.widget.TextView
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.*
 
-fun Date.xFormatted(): String = DATE_FORMAT.format(this)
+fun Date.xFormatted(): String =
+    DateFormat.getDateInstance().format(this)
 
 fun TextView.xDate(date: Date) {
     text = date.xFormatted()
@@ -26,5 +27,3 @@ fun View.xGone() {
 fun View.xShow(show: Boolean) {
     if (show) xShow() else xHide()
 }
-
-private val DATE_FORMAT = SimpleDateFormat("yyyy/MMM/dd", Locale.getDefault())
