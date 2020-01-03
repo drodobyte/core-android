@@ -2,6 +2,7 @@ package com.drodobyte.coreandroid.x
 
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity
+import io.reactivex.Observable
 
 fun FragmentActivity.onBackPressed(action: () -> Unit) {
     onBackPressedDispatcher.addCallback(
@@ -12,3 +13,10 @@ fun FragmentActivity.onBackPressed(action: () -> Unit) {
         }
     )
 }
+
+fun FragmentActivity.backPressObservable() =
+    Observable.create<Any> {
+        onBackPressed {
+            it.onNext(Any())
+        }
+    }

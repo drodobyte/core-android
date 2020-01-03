@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.drodobyte.coreandroid.ui.adapter.BaseRVAdapter.Holder
 import kotlinx.android.extensions.LayoutContainer
 
-abstract class RVAdapter<T>(
-    private val layoutId: Int,
-    open val listener: (T) -> Unit
-) : RecyclerView.Adapter<RVAdapter.Holder<T>>() {
+abstract class BaseRVAdapter<T>(
+    private val layoutId: Int
+) : RecyclerView.Adapter<Holder<T>>() {
 
     val items = mutableListOf<T>()
 
