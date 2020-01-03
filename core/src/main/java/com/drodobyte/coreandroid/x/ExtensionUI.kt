@@ -5,25 +5,35 @@ import android.widget.TextView
 import java.text.DateFormat
 import java.util.*
 
-fun Date.xFormatted(): String =
+fun Date.formatted(): String =
     DateFormat.getDateInstance().format(this)
 
-fun TextView.xDate(date: Date) {
-    text = date.xFormatted()
+fun TextView.fromDate(date: Date) {
+    text = date.formatted()
 }
 
-fun View.xShow() {
+fun String.asDate(onError: Date = Date()): Date =
+    try {
+        DateFormat.getDateInstance().parse(this)!!
+    } catch (t: Throwable) {
+        onError
+    }
+
+fun CharSequence.asDate(onError: Date = Date()) =
+    toString().asDate(onError)
+
+fun View.show() {
     visibility = View.VISIBLE
 }
 
-fun View.xHide() {
+fun View.hide() {
     visibility = View.INVISIBLE
 }
 
-fun View.xGone() {
+fun View.gone() {
     visibility = View.GONE
 }
 
-fun View.xShow(show: Boolean) {
-    if (show) xShow() else xHide()
+fun View.show(show: Boolean) {
+    if (show) show() else hide()
 }
