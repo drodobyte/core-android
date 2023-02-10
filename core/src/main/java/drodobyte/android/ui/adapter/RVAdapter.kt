@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.ui.adapter
+package drodobyte.android.ui.adapter
 
 abstract class RVAdapter<T>(
     layoutId: Int, open val listener: (T) -> Unit

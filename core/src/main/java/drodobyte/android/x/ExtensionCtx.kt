@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.x
+package drodobyte.android.x
 
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentActivity

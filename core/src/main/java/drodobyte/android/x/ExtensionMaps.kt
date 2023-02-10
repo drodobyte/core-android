@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.x
+package drodobyte.android.x
 
 import android.content.Context
 import com.google.android.gms.location.LocationServices

@@ -1,7 +1,7 @@
-package com.drodobyte.coreandroid.viewmodel
+package drodobyte.android.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.drodobyte.coreandroid.util.Cache
+import drodobyte.android.util.Cache
 
 class CacheViewModel<T> : ViewModel(), Cache<T> {
     private var item: T? = null

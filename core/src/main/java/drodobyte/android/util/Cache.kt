@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.util
+package drodobyte.android.util
 
 interface Cache<T> {
 

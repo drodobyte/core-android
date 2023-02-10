@@ -48,8 +48,8 @@ project.afterEvaluate {
     publishing {
         publications {
             library(MavenPublication) {
-                setGroupId "com.drodobyte"
-                setArtifactId "core-android"
+                setGroupId "drodobyte"
+                setArtifactId "android"
                 version android.defaultConfig.versionName + "-SNAPSHOT"
 
                 artifact bundleReleaseAar

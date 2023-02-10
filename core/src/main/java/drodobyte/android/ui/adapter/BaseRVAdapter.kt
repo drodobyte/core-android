@@ -1,10 +1,10 @@
-package com.drodobyte.coreandroid.ui.adapter
+package drodobyte.android.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.drodobyte.coreandroid.ui.adapter.BaseRVAdapter.Holder
+import drodobyte.android.ui.adapter.BaseRVAdapter.Holder
 import kotlinx.android.extensions.LayoutContainer
 
 abstract class BaseRVAdapter<T>(

@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.ui.adapter
+package drodobyte.android.ui.adapter
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject

@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.x
+package drodobyte.android.x
 
 import io.reactivex.Maybe
 import io.reactivex.Observable

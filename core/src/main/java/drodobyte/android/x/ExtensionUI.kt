@@ -1,4 +1,4 @@
-package com.drodobyte.coreandroid.x
+package drodobyte.android.x
 
 import android.view.View
 import android.widget.TextView
