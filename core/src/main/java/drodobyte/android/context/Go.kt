@@ -5,8 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.os.Parcelable
 
 class Go(private val context: Context) {
+
+    val arg by lazy { Arg((context as Activity).intent) }
+
+    class Arg(private val intent: Intent) {
+        fun int(key: String, default: Int = 0) = intent.getIntExtra(key, default)
+        fun string(key: String) = intent.getStringExtra(key)
+    }
 
     fun go(
         activity: Class<out Activity>,
@@ -25,6 +33,7 @@ class Go(private val context: Context) {
             when (value) {
                 is Int -> putExtra(key, value)
                 is String -> putExtra(key, value)
+                is Parcelable -> putExtra(key, value)
                 else -> TODO("Go intent arg ${value.javaClass} class not implemented")
             }
     }
