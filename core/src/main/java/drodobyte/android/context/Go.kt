@@ -28,6 +28,8 @@ class Go(private val context: Context) {
             context.startActivity(it)
         }
 
+    fun back() = (context as Activity).finish()
+
     private fun Intent.put(key: String?, value: Any) {
         if (key != null)
             when (value) {
