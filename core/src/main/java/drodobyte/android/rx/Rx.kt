@@ -6,7 +6,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 
 open class Rx(private val owner: Any? = null) : drodobyte.core.rx.Rx(), OnRx {
 
-    fun <T> onRender(`in`: () -> In<T>) = subs(`in`, mainThread())
     override fun <T> In<T>.render(item: (T) -> Unit) = subs(item, mainThread())
 
     override fun log(it: Throwable) {
