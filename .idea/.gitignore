@@ -1,3 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/.name
+/appInsightsSettings.xml
+/detekt.xml
+/kotlinc.xml
+/migrations.xml
