@@ -1,7 +1,11 @@
 package drodobyte.android.context
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import io.reactivex.Maybe
