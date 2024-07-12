@@ -19,10 +19,11 @@ abstract class BaseFragment : Fragment() {
     final override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        setHasOptionsMenu(menu() != 0)
+        setMenuVisibility(menu() != 0)
         return inflater.inflate(layout(), container, false)
     }
 
+    @Deprecated("", ReplaceWith("todo"))
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         if (menu() != 0)
             inflater.inflate(menu(), menu)
