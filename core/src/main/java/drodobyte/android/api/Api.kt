@@ -24,12 +24,8 @@ object Api {
             .build()
             .create(clazz)
 
-    private fun logger(log: (String) -> Unit) = object : Logger {
-        override fun log(message: String) = log(message)
-    }
-
     private fun interceptor(log: (String) -> Unit) =
-        HttpLoggingInterceptor(logger(log)).apply { level = BODY }
+        HttpLoggingInterceptor(Logger(log)).apply { level = BODY }
 
     private fun client(log: (String) -> Unit) =
         OkHttpClient.Builder()
@@ -41,7 +37,10 @@ object Api {
         JavaNetCookieJar(CookieManager().apply { setCookiePolicy(ACCEPT_ALL) })
 
     private val moshi =
-        Moshi.Builder().add(DateAdapter).build()
+        Moshi.Builder()
+            .add(DateAdapter)
+            .add(IdAdapter)
+            .build()
 
     private val defaultLogger: (String) -> Unit = {
         if (it.contains("error", ignoreCase = true)) {
