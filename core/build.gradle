@@ -94,13 +94,18 @@ afterEvaluate {
                 version = '1.0'
             }
         }
+//        publications {
+//            gpr(MavenPublication) {
+//                from(components.java)
+//            }
+//        }
         repositories {
             maven {
-                name 'deploy'
-                url System.getenv('deployRepoUrl')
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/drodobyte/core-android")
                 credentials {
-                    username = System.getenv('deployRepoUsername')
-                    password = System.getenv('deployRepoPassword')
+                    username = System.getenv("GITUSERNAME")
+                    password = System.getenv("GITTOKEN")
                 }
             }
         }
