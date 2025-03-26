@@ -71,3 +71,10 @@ fastlane/readme.md
 /.idea/modules.xml
 /.idea/codeStyles/Project.xml
 /.idea/vcs.xml
+/.idea/.name
+/.idea/appInsightsSettings.xml
+/.idea/detekt.xml
+/.idea/kotlinc.xml
+/.idea/migrations.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/runConfigurations.xml
