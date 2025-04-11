@@ -21,7 +21,7 @@ import androidx.compose.ui.layout.layout
 
 @Composable
 @Suppress("LongParameterList")
-fun Table(
+fun LazyTable(
     modifier: Modifier = Modifier,
     rowModifier: Modifier = Modifier,
     verticalLazyListState: LazyListState = rememberLazyListState(),
@@ -50,6 +50,39 @@ fun Table(
 
                     afterRow?.invoke(row)
                 }
+            }
+        }
+    }
+}
+
+@Composable
+@Suppress("LongParameterList")
+fun Table(
+    modifier: Modifier = Modifier,
+    rowModifier: Modifier = Modifier,
+    horizontalScrollState: ScrollState = rememberScrollState(),
+    columns: Int,
+    rows: Int,
+    beforeRow: (@Composable (row: Int) -> Unit)? = null,
+    afterRow: (@Composable (row: Int) -> Unit)? = null,
+    cell: @Composable (column: Int, row: Int) -> Unit
+) {
+    val columnWidths = remember { mutableStateMapOf<Int, Int>() }
+
+    Box(modifier = modifier.then(Modifier.horizontalScroll(horizontalScrollState))) {
+        Column {
+            0.rangeUntil(rows).forEach { row ->
+                beforeRow?.invoke(row)
+
+                Row(modifier = rowModifier) {
+                    for (column in 0..<columns) {
+                        Box(modifier = layoutModifier(columnWidths, column)) {
+                            cell(column, row)
+                        }
+                    }
+                }
+
+                afterRow?.invoke(row)
             }
         }
     }

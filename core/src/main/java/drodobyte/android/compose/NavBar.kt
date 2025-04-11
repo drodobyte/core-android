@@ -15,9 +15,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun NavBar(
+fun NavBarDrawable(
     @StringRes initial: StringResInt,
     buttons: Map<StringResInt, DrawableResInt>,
+    clicked: (StringResInt) -> Unit,
+    content: @Composable (StringResInt) -> Unit
+) =
+    buttons.mapValues { (label, drawable) ->
+        @Composable {
+            Icon(
+                painter = painterResource(drawable),
+                contentDescription = label.toString()
+            )
+        } as @Composable () -> Unit
+    }.let {
+        NavBar(initial, it, clicked, content)
+    }
+
+@Composable
+fun NavBar(
+    @StringRes initial: StringResInt,
+    buttons: Map<StringResInt, @Composable () -> Unit>,
     clicked: (StringResInt) -> Unit,
     content: @Composable (StringResInt) -> Unit
 ) {
@@ -25,14 +43,9 @@ fun NavBar(
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
-            buttons.forEach { (label, drawable) ->
+            buttons.forEach { (label, composable) ->
                 item(
-                    icon = {
-                        Icon(
-                            painter = painterResource(drawable),
-                            contentDescription = label.toString()
-                        )
-                    },
+                    icon = composable,
                     label = { Text(stringResource(label)) },
                     selected = label == pane,
                     onClick = { pane = label; clicked(pane) },
