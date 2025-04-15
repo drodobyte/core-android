@@ -10,7 +10,13 @@ import androidx.compose.runtime.setValue
 import drodobyte.core.rx.In
 
 @Composable
-fun <S : Any> mvi(empty: S, start: S, states: In<S>, reduce: (prev: S, now: S) -> S): State<S> {
+fun <S : Any> mvi(
+    empty: S,
+    start: S,
+    states: In<S>,
+    reduce: (prev: S, now: S) -> S,
+    save: (S) -> S = { it }
+): State<S> {
     var saved by rememberSaveable { mutableStateOf(start) }
     return produceState(empty) { // fixme empty state not needed
         states
@@ -29,7 +35,7 @@ fun <S : Any> mvi(empty: S, start: S, states: In<S>, reduce: (prev: S, now: S) -
             }
             .apply {
                 awaitDispose {
-                    saved = value // save state for recreation
+                    saved = save(value) // save state for recreation
                     dispose()
                 }
             }
