@@ -10,6 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import okhttp3.logging.HttpLoggingInterceptor.Logger
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.net.CookieManager
 import java.net.CookiePolicy.ACCEPT_ALL
@@ -21,17 +22,21 @@ import javax.net.ssl.X509TrustManager
 
 object Api {
 
+    @Suppress("LongParameterList")
     fun <T> create(
         url: String,
         clazz: Class<T>,
         ignoreSSLErrors: Boolean = false,
         useUUID: Boolean = false,
+        useMoshi: Boolean = true,
         log: (String) -> Unit = defaultLogger
     ): T =
         Retrofit.Builder()
             .baseUrl(url)
             .client(client(ignoreSSLErrors, log))
-            .addConverterFactory(MoshiConverterFactory.create(moshi(useUUID)))
+            .addConverterFactory(
+                if (useMoshi) MoshiConverterFactory.create(moshi(useUUID)) else GsonConverterFactory.create()
+            )
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(clazz)
